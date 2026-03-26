@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aageno Sekuwa Ghar | The Art of Smoke</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@100..400&display=swap" rel="stylesheet">
+    
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <script src="https://unpkg.com/scrollreveal"></script>
+
+    <style>
+        :root {
+            /* DESIGN SYSTEM TOKENS - RULE 10 */
+            --bg-primary: #fafafa;
+            --surface: #ffffff;
+            --text-main: #1a1a1a;
+            --text-muted: #666666;
+            --accent-red: #d32f2f; 
+            --border-faint: rgba(211, 47, 47, 0.15);
+            
+            --font-display: 'Instrument Serif', serif;
+            --font-ui: 'Geist', sans-serif;
+            
+            --gutter: 24px;
+            --transition-smooth: 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-main);
+            font-family: var(--font-ui);
+            line-height: 1.5;
+            overflow-x: hidden;
+        }
+
+        .container { max-width: 1400px; margin: 0 auto; padding: 0 var(--gutter); }
+
+        /* HEADER & NAV ALIGNMENT FIX */
+        header {
+            padding: 24px var(--gutter);
+            display: flex;
+            justify-content: space-between;
+            align-items: center; /* Vertical alignment fix */
+            border-bottom: 1px solid var(--border-faint);
+            position: sticky;
+            top: 0;
+            background: rgba(250, 250, 250, 0.85);
+            backdrop-filter: blur(12px);
+            z-index: 1000;
+        }
+
+        .brand {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            font-style: italic;
+            color: var(--text-main);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .brand span { color: var(--accent-red); }
+
+        .nav-links { 
+            display: flex; 
+            gap: 40px; 
+            align-items: center; /* Ensures links and button are centered together */
+        }
+
+        .nav-links a:not(.btn-primary) {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            text-decoration: none;
+            color: var(--text-main);
+            font-weight: 400;
+            transition: var(--transition-smooth);
+        }
+
+        .nav-links a:hover { color: var(--accent-red); }
+
+        /* BUTTON STYLING - WHITE BG / RED TEXT */
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            background: var(--surface);
+            color: var(--accent-red);
+            padding: 16px 32px;
+            text-decoration: none;
+            font-size: 0.8rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            transition: var(--transition-smooth);
+            border: 1px solid var(--border-faint);
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(211, 47, 47, 0.05);
+        }
+
+        .btn-primary:hover {
+            background: var(--surface);
+            color: #b71c1c; /* Slightly darker red on hover */
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(211, 47, 47, 0.1);
+            border-color: var(--accent-red);
+        }
+
+        /* HERO SECTION ALIGNMENT */
+        .hero {
+            min-height: 85vh;
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            align-items: center;
+            gap: 60px;
+            padding: 60px 0;
+        }
+
+        .hero__text-content { 
+            grid-column: 1 / 7; 
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .special-label {
+            display: inline-block;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.25em;
+            color: var(--accent-red);
+            border-left: 2px solid var(--accent-red);
+            padding-left: 16px;
+            margin-bottom: 32px;
+        }
+
+        .hero__title {
+            font-family: var(--font-display);
+            font-size: clamp(3.5rem, 6.5vw, 5.5rem);
+            font-weight: 400;
+            line-height: 1;
+            letter-spacing: -0.02em;
+            margin-bottom: 32px;
+        }
+
+        .hero__title em { font-style: italic; color: var(--text-muted); opacity: 0.7; }
+
+        .hero__description {
+            max-width: 460px;
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            margin-bottom: 48px;
+            border-top: 1px solid var(--border-faint);
+            padding-top: 32px;
+            line-height: 1.6;
+        }
+
+        .hero__image-wrapper {
+            grid-column: 7 / 13;
+            position: relative;
+            height: 70vh;
+            border: 1px solid var(--border-faint);
+            overflow: hidden;
+            box-shadow: 20px 20px 0px var(--border-faint); /* Architectural detail */
+        }
+
+        .hero__img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* MENU BENTO GRID */
+        .menu-preview { padding: 120px 0; }
+        
+        .section-header { margin-bottom: 64px; }
+
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(2, 320px);
+            gap: 24px;
+        }
+
+        .bento-item {
+            background: var(--surface);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid var(--border-faint);
+            padding: 32px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            transition: var(--transition-smooth);
+        }
+
+        .bento-item--large { grid-column: span 2; grid-row: span 2; padding: 0; }
+
+        .bento-item:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(211, 47, 47, 0.08); }
+
+        .bento-item__img {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            object-fit: cover;
+            z-index: 1;
+            transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .bento-item:hover .bento-item__img { transform: scale(1.08); }
+
+        .bento-content { 
+            position: relative; 
+            z-index: 2; 
+            color: white; 
+            background: linear-gradient(0deg, rgba(0,0,0,0.8) 0%, transparent 100%); 
+            width: 100%; 
+            padding: 40px; 
+        }
+        
+        .bento-item__title { font-family: var(--font-display); font-size: 2.2rem; font-style: italic; margin-bottom: 8px; font-weight: 400; }
+        .bento-item__tag { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--accent-red); margin-bottom: 12px; display: block; font-weight: 600; }
+
+        /* FACILITIES SECTION */
+        .facilities { padding: 120px 0; background: var(--surface); border-top: 1px solid var(--border-faint); }
+        
+        .facilities__grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1px;
+            background: var(--border-faint);
+            border: 1px solid var(--border-faint);
+        }
+
+        .facility-card {
+            background: var(--surface);
+            padding: 80px 48px;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            transition: var(--transition-smooth);
+        }
+
+        .facility-card:hover { background: var(--bg-primary); }
+        .facility-card i { font-size: 2.5rem; color: var(--accent-red); }
+        .facility-card h3 { font-family: var(--font-display); font-size: 2.2rem; font-style: italic; font-weight: 400; }
+        .facility-card p { font-size: 0.95rem; color: var(--text-muted); max-width: 280px; }
+
+        /* RESERVATION BAR */
+        .reserve-cta {
+            background: var(--text-main);
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+        }
+
+        .reserve-cta h2 {
+            font-family: var(--font-display);
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-style: italic;
+            margin-bottom: 40px;
+            font-weight: 400;
+        }
+
+        /* VISIT SECTION */
+        .visit { padding: 120px 0; border-top: 1px solid var(--border-faint); }
+        .visit__layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .location-details { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 48px; }
+        .detail-item span { display: block; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent-red); margin-bottom: 8px; }
+        .detail-item p { font-size: 1rem; color: var(--text-muted); }
+
+        .map-container {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            border: 1px solid var(--border-faint);
+            filter: grayscale(1) contrast(1.1);
+            transition: var(--transition-smooth);
+            overflow: hidden;
+        }
+
+        .map-container:hover { filter: grayscale(0); }
+
+        /* FOOTER */
+        footer {
+            padding: 100px 0 40px;
+            border-top: 1px solid var(--border-faint);
+            background: var(--surface);
+        }
+
+        .footer__grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 80px;
+        }
+
+        .footer__brand { font-family: var(--font-display); font-size: 2.5rem; font-style: italic; margin-bottom: 24px; }
+        .footer__brand span { color: var(--accent-red); }
+        .footer__col h4 { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.2em; color: var(--accent-red); margin-bottom: 24px; }
+        .footer__list { list-style: none; }
+        .footer__list li { margin-bottom: 12px; }
+        .footer__list a { text-decoration: none; color: var(--text-muted); font-size: 0.9rem; transition: var(--transition-smooth); }
+        .footer__list a:hover { color: var(--text-main); padding-left: 4px; }
+
+        .footer__bottom {
+            padding-top: 40px;
+            border-top: 1px solid var(--border-faint);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+        
+    /* GALLERY SYSTEM - RULE 10 & 18 */
+    .gallery { 
+        padding: 120px 0; 
+        border-top: 1px solid var(--border-faint);
+    }
+
+    .gallery__header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        margin-bottom: 64px;
+    }
+
+    .gallery__grid {
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        grid-auto-rows: 140px;
+        gap: 24px;
+    }
+
+    .gallery__item {
+        position: relative;
+        overflow: hidden;
+        border: 1px solid var(--border-faint);
+        background: var(--surface);
+        transition: var(--transition-smooth);
+    }
+
+    /* CUSTOM BENTO LOGIC FOR GALLERY */
+    .gallery__item--1 { grid-column: span 4; grid-row: span 3; }
+    .gallery__item--2 { grid-column: span 4; grid-row: span 2; }
+    .gallery__item--3 { grid-column: span 4; grid-row: span 4; }
+    .gallery__item--4 { grid-column: span 4; grid-row: span 2; }
+    .gallery__item--5 { grid-column: span 8; grid-row: span 2; }
+
+    .gallery__img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        transition: transform 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+        filter: none;
+    }
+
+    .gallery__item:hover .gallery__img {
+        transform: scale(1.05);
+        filter: saturate(1) contrast(1.1);
+    }
+
+    .gallery__overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to top, rgba(26, 26, 26, 0.4), transparent);
+        opacity: 0;
+        display: flex;
+        align-items: flex-end;
+        padding: 24px;
+        transition: opacity 0.4s ease;
+    }
+
+    .gallery__item:hover .gallery__overlay {
+        opacity: 1;
+    }
+
+    .gallery__caption {
+        color: white;
+        font-family: var(--font-display);
+        font-style: italic;
+        font-size: 1.25rem;
+    }
+    /* ANTI-BLUR OVERRIDE - RULE 14 & 18 */
+.gallery__img, .hero__img, .bento-item__img {
+    image-rendering: auto;
+    backface-visibility: hidden;
+    transform: translateZ(0);
+    will-change: transform;
+}                /* Forces GPU acceleration */
+
+
+    @media (max-width: 1024px) {
+        .gallery__grid { grid-template-columns: 1fr; grid-auto-rows: 300px; }
+        .gallery__item { grid-column: span 1 !important; grid-row: span 1 !important; }
+        .gallery__header { flex-direction: column; align-items: flex-start; gap: 24px; }
+    }
+
+
+        /* MOBILE OPTIMIZATION */
+        @media (max-width: 1024px) {
+            header { padding: 20px var(--gutter); }
+            .nav-links { gap: 20px; }
+            .hero { display: flex; flex-direction: column; text-align: left; padding: 40px 0; }
+            .hero__image-wrapper { width: 100%; height: 50vh; order: -1; box-shadow: 12px 12px 0px var(--border-faint); }
+            .hero__text-content { padding-top: 40px; }
+            .bento-grid, .facilities__grid, .footer__grid { grid-template-columns: 1fr; }
+            .bento-item--large { grid-column: span 1; height: 400px; }
+            .visit__layout { grid-template-columns: 1fr; gap: 48px; }
+            .map-container { aspect-ratio: 16 / 9; }
+        }
+     .heritage { 
+        padding: 160px 0; 
+        background-color: var(--bg-primary);
+        border-top: 1px solid var(--border-faint);
+    }
+
+    .heritage__layout {
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        gap: 64px;
+        align-items: center;
+    }
+
+    /* IMAGE INTEGRITY FIX - RULE 14 & 18 */
+    .heritage__image-box {
+        grid-column: 1 / 7;
+        position: relative;
+        aspect-ratio: 4 / 5;
+        border: 1px solid var(--border-faint);
+        overflow: hidden;
+        background: var(--surface);
+    }
+
+    .heritage__img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        /* ANTI-BLUR LOGIC */
+        image-rendering: -webkit-optimize-contrast; 
+        image-rendering: crisp-edges;
+        transform: translateZ(0);
+        backface-visibility: hidden;
+        transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .heritage__image-box:hover .heritage__img {
+        transform: scale(1.03) translateZ(0);
+    }
+
+    /* TYPOGRAPHIC HIERARCHY - RULE 5 */
+    .heritage__content {
+        grid-column: 7 / 13;
+        padding-left: 40px;
+    }
+
+    .heritage__label {
+        display: block;
+        font-size: 0.65rem;
+        text-transform: uppercase;
+        letter-spacing: 0.2em;
+        color: var(--accent-red);
+        margin-bottom: 24px;
+        font-weight: 600;
+    }
+
+    .heritage__title {
+        font-family: var(--font-display);
+        font-size: clamp(3rem, 5vw, 4.5rem);
+        line-height: 1.1;
+        font-weight: 400;
+        margin-bottom: 32px;
+        letter-spacing: -0.02em;
+    }
+
+    .heritage__title em {
+        font-style: italic;
+        color: var(--text-muted);
+        opacity: 0.8;
+    }
+
+    .heritage__text {
+        font-size: 1.15rem;
+        line-height: 1.7;
+        color: var(--text-muted);
+        max-width: 520px;
+        margin-bottom: 40px;
+    }
+
+    .heritage__stats {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 32px;
+        padding-top: 40px;
+        border-top: 1px solid var(--border-faint);
+    }
+
+    .stat-item h4 {
+        font-family: var(--font-display);
+        font-size: 2rem;
+        font-style: italic;
+        color: var(--text-main);
+        margin-bottom: 4px;
+    }
+
+    .stat-item p {
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--accent-red);
+    }
+
+    @media (max-width: 1024px) {
+        .heritage { padding: 80px 0; }
+        .heritage__layout { grid-template-columns: 1fr; gap: 48px; }
+        .heritage__image-box { grid-column: span 1; aspect-ratio: 1 / 1; }
+        .heritage__content { grid-column: span 1; padding-left: 0; }
+    }
+        
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="#" class="brand">Aageno<span>.</span></a>
+        <nav class="nav-links">
+            <a href="#menu">Specials</a>
+            <a href="#facilities">Reviews </a>
+            <a href="#visit">Location</a>
+            <a href="#reserve" class="btn-primary" style="padding: 10px 24px; font-size: 0.65rem;">Book Table</a>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section class="hero">
+            <div class="hero__text-content">
+                <span class="special-label reveal">Traditional Smoke House</span>
+                <h1 class="hero__title reveal">
+                    Aageno <em>sekuwa</em> <br>Ghar.
+                </h1>
+                <p class="hero__description reveal">
+                  Welcome to Aageno Sekuwa Ghar where you can enjoy Continental, Indian, Chinese as well as nepali dishes with best taste and cozy environment. 
+                </p>
+                <div>
+                    <a href="#menu" class="btn-primary reveal">
+                        Contact Us
+                        <i class="ph-thin ph-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="hero__image-wrapper reveal">
+                <img src="unnamed.webp" alt="Authentic wood-fired grilling" class="hero__img">
+            </div>
+        </section>
+
+        <section id="menu" class="menu-preview">
+            <div class="section-header reveal">
+                <span class="special-label">Signature Offerings</span>
+                <h2 style="font-family: var(--font-display); font-size: 3.5rem; font-weight: 400; letter-spacing: -0.02em;"> Flavors & Fire</h2>
+            </div>
+
+            <div class="bento-grid">
+                <div class="bento-item bento-item--large reveal">
+                    <img src="aageno.jpg" alt="Aageno Signature Platter" class="bento-item__img">
+                    <div class="bento-content">
+                        <span class="bento-item__tag">House Favorite</span>
+                        <h3 class="bento-item__title">The Aageno Platter</h3>
+                    </div>
+                </div>
+
+                <div class="bento-item reveal" style="background: var(--text-main); color: white; border: 0;">
+                    <span class="bento-item__tag">Process</span>
+                    <h3 class="bento-item__title" style="color: white; font-size: 1.6rem;">Slow-Smoked Perfection</h3>
+                    <p style="font-size: 0.85rem; opacity: 0.7; margin-top: 16px; line-height: 1.6;">Savor the bold flavors of our perfectly grilled Chicken Tandoori </p>
+                </div>
+
+                <div class="bento-item reveal" style="padding: 0;">
+                    <img src="DISH.webp" alt="Grilled Skewers" class="bento-item__img">
+                    <div class="bento-content" style="padding: 24px;">
+                        <span class="bento-item__tag">The Grill</span>
+                        <h3 class="bento-item__title" style="font-size: 1.6rem;">Signature Sekuwa</h3>
+                    </div>
+                </div>
+
+                <div class="bento-item reveal">
+                    <span class="bento-item__tag">Heritage</span>
+                    <h3 class="bento-item__title" style="font-size: 1.6rem; color: var(--text-main);">Our Roots</h3>
+                    <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 16px; line-height: 1.6;">Crafting authentic flavors since the first ember was lit in our kitchen.</p>
+                </div>
+            </div>
+        </section>
+        
+        
+        <section id="about" class="heritage">
+    <div class="container">
+        <div class="heritage__layout">
+            <div class="heritage__image-box reveal">
+                <img src="family.jpg" alt="The family behind Aageno Sekuwa Ghar" class="heritage__img">
+            </div>
+
+            <div class="heritage__content">
+                <span class="heritage__label reveal">About Us</span>
+                <h2 class="heritage__title reveal">
+                   Aageno sekuwa<em>Ghar</em>
+                </h2>
+                
+                <div class="heritage__text reveal">
+                    <p>
+                         Aageno Sekuwa Ghar, is a Resturent located in Gathaghar, Bhaktapur, Nepal. It is a barbecue restaurant that specializes in traditional Nepali grilled dishes, particularly sekuwa, which is a popular street food in Nepal. The restaurant is known for its authentic flavors and cozy ambiance, making it a favorite spot for locals and tourists alike to enjoy delicious grilled meals.
+                    </p>
+                </div>
+
+                <div class="heritage__stats reveal">
+                    <div class="stat-item">
+                        <h4>7AM- 10PM</h4>
+                        <p>Open Hours</p>
+                    </div>
+                    <div class="stat-item">
+                        <h4>Services</h4>
+                        <p>Dine-in, Outdoor seating, Takeaway</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+        <section id="facilities" class="facilities">
+            <!-- Elfsight Google Reviews | Untitled Google Reviews -->
+<script src="https://elfsightcdn.com/platform.js" async></script>
+<div class="elfsight-app-ab0bbee7-b4a9-4a83-a691-8d041dfa81e4" data-elfsight-app-lazy></div>
+        </section>
+
+        <section id="reserve" class="reserve-cta">
+            <div class="reveal">
+                <span class="special-label" style="color: white; border-color: white;">Join Us Tonight</span>
+                <h2>Reserve your spot at the Aageno.</h2>
+                <a href="#" class="btn-primary" style="background: white; color: var(--accent-red); border: 0;">Confirm Booking</a>
+            </div>
+        </section>
+
+        <section id="visit" class="visit">
+            <div class="visit__layout">
+                <div class="location-info reveal">
+                    <span class="special-label">Find the Smoke</span>
+                    <h3 style="font-family: var(--font-display); font-size: clamp(3rem, 5vw, 4.5rem); font-style: italic; font-weight: 400;">Visit the Ghar.</h3>
+                    
+                    <div class="location-details">
+                        <div class="detail-item">
+                            <span>Address</span>
+                            <p>Gathaghar, Bhaktapur, Nepal <br>Barbecue restaurant</p>
+                        </div>
+                        <div class="detail-item">
+                            <span>Contact Us</span>
+                            <p>+977 980 123 4567 <br>aagenosekuwa.com.np</p>
+                        </div>
+                    </div>
+                </div>
+
+    <div class="map-container reveal">
+    <iframe 
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3533.12!2d85.3743297!3d27.6733981!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb1b0e9039291b%3A0x7b68ccb4865bd8c5!2sAageno%20Sekuwa%20Ghar!5e0!3m2!1sen!2snp!4v1"
+        width="100%"
+        height="100%"
+        style="border:0; display:block;"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade">
+    </iframe>
+</div>
+        </section>
+        
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer__grid reveal">
+                <div class="footer__col">
+                    <div class="footer__brand">Aageno<span>.</span></div>
+                    <p style="color: var(--text-muted); max-width: 300px; font-size: 0.95rem; line-height: 1.6;">Best Sekuwa shop near bhaktapur,Spice & falvour</p>
+                </div>
+                <div class="footer__col">
+                    <h4>Navigation</h4>
+                    <ul class="footer__list">
+                        <li><a href="#menu">The Grill</a></li>
+                        <li><a href="#facilities">Experience</a></li>
+                        <li><a href="#visit">Location</a></li>
+                    </ul>
+                </div>
+                <div class="footer__col">
+                    <h4>Social</h4>
+                    <ul class="footer__list">
+                        <li><a href="https://www.instagram.com/aagenosekuwaghar/">Instagram</a></li>
+                        <li><a href="https://www.facebook.com/aagenosekuwa">Facebook</a></li>
+                        <li><a href="#">TikTok</a></li>
+                    </ul>
+                </div>
+                <div class="footer__col">
+                    <h4>Legal</h4>
+                    <ul class="footer__list">
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer__bottom reveal">
+                <p>© 2026 Aageno Sekuwa Ghar. All rights reserved.</p>
+                <p>Designed by `abhiyan_company`</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const sr = ScrollReveal({
+            origin: 'bottom',
+            distance: '40px',
+            duration: 1200,
+            delay: 200,
+            easing: 'cubic-bezier(0.16, 1, 0.3, 1)',
+            interval: 150
+        });
+
+        sr.reveal('.reveal');
+    </script>
+</body>
+</html>
